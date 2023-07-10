@@ -5,7 +5,7 @@ import reactor.core.publisher.Mono;
 
 public interface SofkianoRepository {
     Mono<Sofkiano> findbysofkianoId(String id);
-    Mono<Void> saveData(Sofkiano sofkiano);
+    Mono<Sofkiano> saveData(Sofkiano sofkiano);
 
 
 }

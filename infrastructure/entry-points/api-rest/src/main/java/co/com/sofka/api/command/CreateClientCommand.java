@@ -2,14 +2,11 @@ package co.com.sofka.api.command;
 
 import co.com.sofka.api.model.ClientDTO;
 import co.com.sofka.api.model.ErrorDTO;
-import co.com.sofka.api.model.SofkianoDTO;
 import co.com.sofka.api.utils.ObjectConversionUtils;
-import co.com.sofka.model.client.ClientInformation;
-import co.com.sofka.model.sofkiano.Sofkiano;
+import co.com.sofka.model.client.Client;
 import co.com.sofka.usecase.clientcommand.ClientCommandUseCase;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
 import org.reactivecommons.utils.ObjectMapper;
 import org.springframework.http.HttpStatus;
@@ -37,45 +34,17 @@ public class CreateClientCommand {
 
     @PostMapping(path = "/save-client", produces = {MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
     @ApiOperation(value = "Create a new client")
-    public Mono<ClientDTO> createPerson(@Valid @RequestBody ClientDTO clientDTO) {
-        return clientCommandUseCase.createClient(toDomainObject(clientDTO))
-                .map(this::toDTO);
+    public Mono<String> createPerson(@Valid @RequestBody ClientDTO clientDTO) {
+        return clientCommandUseCase.createClient(toDomainObject(clientDTO));
     }
 
-
-    private ClientInformation toDomainObject(ClientDTO clientDTO) {
-        return ObjectConversionUtils.convertir(clientDTO, ClientInformation.class);
+    private Client toDomainObject(ClientDTO clientDTO) {
+        return ObjectConversionUtils.convertir(clientDTO, Client.class);
     }
 
-    private ClientDTO toDTO(ClientInformation client) {
+    private ClientDTO toDTO(Client client) {
+
         return ObjectConversionUtils.convertir(client, ClientDTO.class);
     }
 
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public List<ErrorDTO> handleValidationExceptions(MethodArgumentNotValidException ex) {
-        return ex.getBindingResult()
-                .getAllErrors()
-                .stream()
-                .map(CreateClientCommand::getErrorDto)
-                .collect(Collectors.toList());
-    }
-
-    private static ErrorDTO getErrorDto(ObjectError error) {
-        String field = null;
-        String rejectedValue = null;
-
-        if (error instanceof FieldError) {
-            FieldError fieldError = (FieldError) error;
-            field = fieldError.getField();
-            rejectedValue = String.valueOf(fieldError.getRejectedValue());
-        }
-
-
-        return new ErrorDTO(
-                error.getObjectName(),
-                field,
-                rejectedValue,
-                error.getDefaultMessage());
-    }
 }

@@ -31,39 +31,16 @@ public class CreatePersonCommand {
 
     @PostMapping(path = "/save-person", produces = {MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
     @ApiOperation(value = "Create a new person")
-    public Mono<Sofkiano> createPerson(@Valid @RequestBody SofkianoDTO sofkianoDTO) {
-        return createPersonCommandUseCase.execute(mapperPersonDTOtoPerson(sofkianoDTO));
+    public Mono<SofkianoDTO> createPerson(@Valid @RequestBody SofkianoDTO sofkianoDTO) {
+        return createPersonCommandUseCase.execute(toSofkiano(sofkianoDTO))
+                .map(this::toSofkianoDTO);
     }
 
-    private Sofkiano mapperPersonDTOtoPerson(SofkianoDTO sofkianoDTO) {
+    private Sofkiano toSofkiano(SofkianoDTO sofkianoDTO) {
         return ObjectConversionUtils.convertir(sofkianoDTO,Sofkiano.class);
     }
 
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public List<ErrorDTO> handleValidationExceptions(MethodArgumentNotValidException ex){
-        return ex.getBindingResult()
-                .getAllErrors()
-                .stream()
-                .map(CreatePersonCommand::getErrorDto)
-                .collect(Collectors.toList());
-    }
-
-    private static ErrorDTO getErrorDto(ObjectError error) {
-        String field = null;
-        String rejectedValue = null;
-
-        if (error instanceof FieldError) {
-            FieldError fieldError = (FieldError) error;
-            field = fieldError.getField();
-            rejectedValue = String.valueOf(fieldError.getRejectedValue());
-        }
-
-
-        return new ErrorDTO(
-                error.getObjectName(),
-                field,
-                rejectedValue,
-                error.getDefaultMessage());
+    private SofkianoDTO toSofkianoDTO(Sofkiano sofkiano) {
+        return ObjectConversionUtils.convertir(sofkiano,SofkianoDTO.class);
     }
 }

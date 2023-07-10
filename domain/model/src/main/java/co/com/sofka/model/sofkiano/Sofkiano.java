@@ -10,11 +10,13 @@ import lombok.NoArgsConstructor;
 @Builder(toBuilder = true)
 public class Sofkiano {
     private String id;
-    private String identificationType;
+    private String identificationTypeId;
     private String name;
     private String identification;
     private String address;
     private Boolean isActive;
-    private String currentClient;
-    private String currentProject;
+    private String clientId;
+    private String projectId;
+    private String roll;
+    private String countryId;
 }

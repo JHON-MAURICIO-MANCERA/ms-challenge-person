@@ -15,7 +15,7 @@ public class ClientData {
     @Id
     private String id;
     private String nit;
-    @Column(name = "name")
+    @Column(name = "client_name")
     private String clientName;
-    private String project;
+
 }

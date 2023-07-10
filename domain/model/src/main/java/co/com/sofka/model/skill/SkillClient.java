@@ -1,4 +1,4 @@
-package co.com.sofka.model.client;
+package co.com.sofka.model.skill;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,10 +10,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder(toBuilder = true)
-public class ClientInformation {
+public class SkillClient {
     private String id;
-    private String nit;
-    private String clientName;
-    private String project;
-    private List<String> skills;
+    private String clientId;
+    private String skill;
+
 }

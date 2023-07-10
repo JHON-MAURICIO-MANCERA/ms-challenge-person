@@ -1,7 +1,9 @@
 package co.com.sofka.usecase.clientcommand;
 
-import co.com.sofka.model.client.ClientInformation;
+import co.com.sofka.model.client.Client;
 import co.com.sofka.model.client.gateways.ClientRepository;
+import co.com.sofka.model.enums.PersonErrorEnums;
+import co.com.sofka.model.exception.PersonException;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
 
@@ -14,38 +16,35 @@ public class ClientCommandUseCase {
     Logger logger = Logger.getLogger(ClientCommandUseCase.class.getName());
 
 
-    public Mono<ClientInformation> createClient(ClientInformation client) {
+    public Mono<String> createClient(Client client) {
         logger.info("enter to CreatePersonCommandUseCase");
         return Mono.just(client)
-                //.flatMap(clientInformation -> clientRepository.findByClientId(clientInformation.getId()))
-                .map(clientSaved -> newClient(client))
-                //.switchIfEmpty(Mono.just(newClient(client)))
-                .doOnNext(ms -> logger.info("aqui entreo y guardó" + ms))
+                .filter(info -> !info.getId().isEmpty())
+                .flatMap(this::validateClient)
+                .switchIfEmpty(Mono.just(newClient(client)))
                 .flatMap(clientRepository::saveData)
-                .map(rr -> ClientInformation.builder().build())
-                .doOnError(error -> logger.info(error.getMessage()));
+                .doOnError(error -> logger.info("Error creando cliente "+ error.getMessage()));
 
 
     }
+    private  Mono<Client> validateClient  (Client client) {
+        return Mono.just(client)
+                .flatMap(clientInformation -> clientRepository.findByClientId(clientInformation.getId()))
+                .map(clientSaved -> updatePerson(client,clientSaved))
+                .switchIfEmpty(Mono.error(new PersonException(PersonErrorEnums.CLIENT_DOES_NOT_EXIST)));
+    }
 
-    private ClientInformation newClient(ClientInformation client) {
-
-        return ClientInformation.builder()
+    private Client newClient(Client client) {
+        return client.toBuilder()
                 .id(UUID.randomUUID().toString())
-                .clientName(client.getClientName())
-                .nit(client.getNit())
-                .project(client.getProject())
-                .skills(client.getSkills())
                 .build();
     }
 
-    private ClientInformation updatePerson(ClientInformation client, ClientInformation clientSaved) {
-        return client.toBuilder()
+    private Client updatePerson(Client client, Client clientSaved) {
+        return clientSaved.toBuilder()
                 .id(clientSaved.getId())
                 .clientName(client.getClientName())
                 .nit(client.getNit())
-                .project(client.getProject())
-                .skills(client.getSkills())
                 .build();
     }
 }

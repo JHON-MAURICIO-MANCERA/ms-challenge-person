@@ -1,10 +1,10 @@
 package co.com.sofka.model.client.gateways;
 
 
-import co.com.sofka.model.client.ClientInformation;
+import co.com.sofka.model.client.Client;
 import reactor.core.publisher.Mono;
 
 public interface ClientRepository {
-    Mono<Void> saveData(ClientInformation client);
-    Mono<ClientInformation> findByClientId(String id);
+    Mono<String> saveData(Client client);
+    Mono<Client> findByClientId(String id);
 }

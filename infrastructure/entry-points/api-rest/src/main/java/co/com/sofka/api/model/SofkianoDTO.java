@@ -15,13 +15,16 @@ import javax.validation.constraints.NotEmpty;
 public class SofkianoDTO {
     private String id;
     @NotEmpty(message = "identificationType can not is Empty nor Null")
-    private String identificationType;
+    private String identificationTypeId;
     @NotEmpty(message = "name can not is Empty nor Null")
     private String name;
     @NotEmpty(message = "identification can not is Empty nor Null")
     private String identification;
     private String address;
     private Boolean isActive;
-    private String currentClient;
-    private String currentProject;
+    private String clientId;
+    private String projectId;
+    private String roll;
+    private String countryId;
+
 }

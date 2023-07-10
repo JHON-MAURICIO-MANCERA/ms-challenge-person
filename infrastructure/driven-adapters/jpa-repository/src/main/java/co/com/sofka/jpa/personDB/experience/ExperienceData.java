@@ -1,4 +1,4 @@
-package co.com.sofka.jpa.personDB.sofkiano;
+package co.com.sofka.jpa.personDB.experience;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,22 +16,18 @@ import javax.persistence.Table;
 @Builder(toBuilder = true)
 @Entity
 @Table(name = "sofkiano")
-public class SofkianoData {
-
+public class ExperienceData {
     @Id
     private String id;
-    @Column(name = "identification_type_id")
-    private String identificationTypeId;
+    @Column(name = "identification_type")
+    private String identificationType;
     private String name;
     private String identification;
     private String address;
     @Column(name = "is_active")
     private Boolean isActive;
-    @Column(name = "client_id")
-    private String clientId;
-    @Column(name = "project_id")
-    private String projectId;
-    private String roll;
-    @Column(name = "country_id")
-    private String countryId;
+    @Column(name = "current_client")
+    private String currentClient;
+    @Column(name = "current_project")
+    private String currentProject;
 }

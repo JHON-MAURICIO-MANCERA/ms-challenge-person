@@ -19,15 +19,15 @@ public class JPASofkianoRepositoryAdapter extends AdapterOperations<Sofkiano, So
     }
 
     @Override
-    public Mono<Void> saveData(Sofkiano sofkiano) {
+    public Mono<Sofkiano> saveData(Sofkiano sofkiano) {
         return Mono.justOrEmpty(sofkiano)
                 .map(this::toData)
-                .flatMap(sofkianoData -> Mono.justOrEmpty(repository.save(sofkianoData)))
-                .then();
+                .flatMap(sofkianoData -> Mono.justOrEmpty(repository.save(sofkianoData)).map(this::toEntity));
     }
 
     @Override
     public Mono<Sofkiano> findbysofkianoId(String id) {
-        return Mono.justOrEmpty(repository.findById(id)).map(this::toEntity);
+        return Mono.justOrEmpty(repository.findById(id))
+                .map(data -> toEntity(data));
     }
 }
