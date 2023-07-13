@@ -1,5 +1,4 @@
 package co.com.sofka.jpa.helper;
-
 import org.reactivecommons.utils.ObjectMapper;
 import org.springframework.data.domain.Example;
 import org.springframework.data.repository.CrudRepository;
