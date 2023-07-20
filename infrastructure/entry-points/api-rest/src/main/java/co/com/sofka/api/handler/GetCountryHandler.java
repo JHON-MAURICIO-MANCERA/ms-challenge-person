@@ -20,8 +20,8 @@ public class GetCountryHandler {
 
     private final GetCountryUseCase getCountryUseCase;
 
-    @GetMapping(path = "/all-country", params = {"status"}, produces = {MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
-    @ApiOperation(value = "get all country")
+    @GetMapping(path = "/by-status", params = {"status"}, produces = {MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @ApiOperation(value = "get  country")
     public Flux<CountryDTO> getCountryActives(@RequestParam(value = "status", required = true) final String status) {
         return getCountryUseCase.execute(status)
                 .map(this::toDTO);
