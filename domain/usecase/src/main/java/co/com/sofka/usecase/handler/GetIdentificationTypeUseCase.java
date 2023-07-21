@@ -10,6 +10,7 @@ import reactor.core.publisher.Mono;
 import java.util.Comparator;
 import java.util.logging.Logger;
 
+
 @RequiredArgsConstructor
 public class GetIdentificationTypeUseCase {
     Logger logger = Logger.getLogger(GetIdentificationTypeUseCase.class.getName());
