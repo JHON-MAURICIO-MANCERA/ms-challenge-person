@@ -1,4 +1,4 @@
-package co.com.sofka.usecase.getcountry;
+package co.com.sofka.usecase.handler;
 
 import co.com.sofka.model.country.Country;
 import co.com.sofka.model.country.gateways.CountryRepository;
@@ -21,7 +21,6 @@ public class GetCountryUseCase {
         return countryRepository.findByStatus(status)
                 .sort(Comparator.comparing(Country::getName))
                 .switchIfEmpty(Mono.defer(() -> Mono.error(new PersonException(PersonErrorEnums.NO_ACTIVE_COUNTRIES))))
-                .sort(Comparator.comparing(Country::getName))
                 .doOnError(error -> logger.info("Search country failed "+ error.getMessage()));
 
     }

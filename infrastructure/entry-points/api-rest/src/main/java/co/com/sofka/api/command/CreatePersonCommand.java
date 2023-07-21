@@ -1,26 +1,18 @@
 package co.com.sofka.api.command;
 
-import co.com.sofka.api.model.ErrorDTO;
 import co.com.sofka.api.model.SofkianoDTO;
 import co.com.sofka.api.utils.ObjectConversionUtils;
 import co.com.sofka.model.sofkiano.Sofkiano;
-import co.com.sofka.usecase.createpersoncommand.CreatePersonCommandUseCase;
+import co.com.sofka.usecase.command.CreatePersonCommandUseCase;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.validation.FieldError;
-import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
 
 import javax.validation.Valid;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/api/ms-challenge-person/api/persons/create-persons")

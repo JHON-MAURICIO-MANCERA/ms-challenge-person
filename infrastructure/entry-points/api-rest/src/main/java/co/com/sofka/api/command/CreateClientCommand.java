@@ -3,7 +3,7 @@ package co.com.sofka.api.command;
 import co.com.sofka.api.model.ClientDTO;
 import co.com.sofka.api.utils.ObjectConversionUtils;
 import co.com.sofka.model.client.Client;
-import co.com.sofka.usecase.clientcommand.ClientCommandUseCase;
+import co.com.sofka.usecase.command.ClientCommandUseCase;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;

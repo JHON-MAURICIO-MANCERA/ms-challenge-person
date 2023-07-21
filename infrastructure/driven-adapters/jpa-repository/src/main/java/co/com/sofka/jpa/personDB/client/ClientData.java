@@ -17,5 +17,6 @@ public class ClientData {
     private String nit;
     @Column(name = "client_name")
     private String clientName;
+    private String status;
 
 }

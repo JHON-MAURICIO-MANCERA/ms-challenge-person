@@ -6,8 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotEmpty;
-import java.util.List;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,5 +16,7 @@ public class ClientDTO {
     private String nit;
     @NotEmpty(message = "clientName can not is Empty nor Null")
     private String clientName;
+
+
 }
 
