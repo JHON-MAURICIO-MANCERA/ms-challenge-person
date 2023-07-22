@@ -1,6 +1,6 @@
 spring:
   application:
-    name: "ms-challenge-persons"
+    name: "ms-challenge-person"
   devtools:
     restart:
       enabled: false
