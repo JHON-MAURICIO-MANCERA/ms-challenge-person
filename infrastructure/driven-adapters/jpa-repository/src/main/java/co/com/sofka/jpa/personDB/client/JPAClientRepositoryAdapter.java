@@ -6,6 +6,7 @@ import co.com.sofka.model.client.gateways.ClientRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.reactivecommons.utils.ObjectMapper;
 import org.springframework.stereotype.Repository;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Slf4j
@@ -26,6 +27,13 @@ public class JPAClientRepositoryAdapter extends AdapterOperations<Client, Client
 
     @Override
     public Mono<Client> findByClientId(String id) {
-        return Mono.justOrEmpty(repository.findById(id)).map(this::toEntity);
+        return Mono.justOrEmpty(repository.findById(id))
+                .map(this::toEntity);
+    }
+
+    @Override
+    public Flux<Client> findByStatus(String status) {
+        return Flux.fromIterable(repository.findByStatus(status))
+                .map(this::toEntity);
     }
 }

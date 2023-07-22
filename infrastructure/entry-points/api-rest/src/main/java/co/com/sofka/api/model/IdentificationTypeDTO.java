@@ -13,5 +13,4 @@ public class IdentificationTypeDTO {
     private  String id;
     private  String name;
     private  String abbreviation;
-    private  String status;
 }

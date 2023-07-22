@@ -1,4 +1,4 @@
-package co.com.sofka.usecase.clientcommand;
+package co.com.sofka.usecase.command;
 
 import co.com.sofka.model.client.Client;
 import co.com.sofka.model.client.gateways.ClientRepository;
@@ -45,8 +45,11 @@ public class ClientCommandUseCase {
                 .id(clientSaved.getId())
                 .clientName(client.getClientName())
                 .nit(client.getNit())
+                .status(client.getStatus())
                 .build();
     }
+
+
 }
 
 

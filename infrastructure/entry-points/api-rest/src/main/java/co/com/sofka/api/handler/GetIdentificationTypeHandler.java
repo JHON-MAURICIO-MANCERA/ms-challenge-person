@@ -1,12 +1,9 @@
 package co.com.sofka.api.handler;
 
-import co.com.sofka.api.model.CountryDTO;
 import co.com.sofka.api.model.IdentificationTypeDTO;
 import co.com.sofka.api.utils.ObjectConversionUtils;
-import co.com.sofka.model.country.Country;
 import co.com.sofka.model.identificationtype.IdentificationType;
-import co.com.sofka.usecase.getcountry.GetCountryUseCase;
-import co.com.sofka.usecase.getidentificationtype.GetIdentificationTypeUseCase;
+import co.com.sofka.usecase.handler.GetIdentificationTypeHandlerUseCase;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
@@ -21,14 +18,14 @@ import reactor.core.publisher.Flux;
 @RequestMapping(value = "/api/ms-challenge-person/api/persons/get-identification-type")
 @AllArgsConstructor
 @Api(tags = "IdentificationType  API")
-public class GetIdentificationType {
+public class GetIdentificationTypeHandler {
 
-    private final GetIdentificationTypeUseCase getIdentificationTypeUseCase;
+    private final GetIdentificationTypeHandlerUseCase getIdentificationTypeHandlerUseCase;
 
     @GetMapping(path = "/active", params = {"status"}, produces = {MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
     @ApiOperation(value = "get identification type")
     public Flux<IdentificationTypeDTO> getCountryActives(@RequestParam(value = "status", required = true) final String status) {
-        return getIdentificationTypeUseCase.execute(status)
+        return getIdentificationTypeHandlerUseCase.execute(status)
                 .map(this::toDTO);
     }
 

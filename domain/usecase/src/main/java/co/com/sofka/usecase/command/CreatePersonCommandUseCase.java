@@ -1,4 +1,4 @@
-package co.com.sofka.usecase.createpersoncommand;
+package co.com.sofka.usecase.command;
 
 import co.com.sofka.model.enums.PersonErrorEnums;
 import co.com.sofka.model.exception.PersonException;

@@ -10,13 +10,12 @@ import javax.validation.constraints.NotEmpty;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder(toBuilder = true)
-public class ClientDTO {
+public class ProjectDTO {
     private String id;
-    @NotEmpty(message = "nit can not is Empty nor Null")
-    private String nit;
-    @NotEmpty(message = "clientName can not is Empty nor Null")
-    private String clientName;
-
-
+    @NotEmpty(message = "name can not is Empty nor Null")
+    private String name;
+    @NotEmpty(message = "clienId can not is Empty nor Null")
+    private String clientId;
 }
+
 

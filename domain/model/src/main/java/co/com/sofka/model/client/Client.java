@@ -13,4 +13,5 @@ public class Client {
     private String id;
     private String nit;
     private String clientName;
+    private String status;
 }
