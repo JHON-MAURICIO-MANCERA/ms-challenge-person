@@ -12,8 +12,8 @@ import java.util.Comparator;
 import java.util.logging.Logger;
 
 @RequiredArgsConstructor
-public class GetCountryUseCase {
-    Logger logger = Logger.getLogger(GetCountryUseCase.class.getName());
+public class GetCountryHandlerUseCase {
+    Logger logger = Logger.getLogger(GetCountryHandlerUseCase.class.getName());
     private final CountryRepository countryRepository;
 
     public Flux<Country> execute(String status){

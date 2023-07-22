@@ -12,8 +12,8 @@ import java.util.logging.Logger;
 
 
 @RequiredArgsConstructor
-public class GetIdentificationTypeUseCase {
-    Logger logger = Logger.getLogger(GetIdentificationTypeUseCase.class.getName());
+public class GetIdentificationTypeHandlerUseCase {
+    Logger logger = Logger.getLogger(GetIdentificationTypeHandlerUseCase.class.getName());
     private  final IdentificationTypeRepository identityTypeRepository;
 
     public Flux<IdentificationType> execute (String status){

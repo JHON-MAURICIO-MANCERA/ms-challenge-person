@@ -7,6 +7,8 @@ import reactor.core.publisher.Mono;
 
 public interface ClientRepository {
     Mono<String> saveData(Client client);
+
     Mono<Client> findByClientId(String id);
+
     Flux<Client> findByStatus(String status);
 }

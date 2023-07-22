@@ -3,10 +3,9 @@ package co.com.sofka.api.handler;
 import co.com.sofka.api.model.CountryDTO;
 import co.com.sofka.api.utils.ObjectConversionUtils;
 import co.com.sofka.model.country.Country;
-import co.com.sofka.usecase.handler.GetCountryUseCase;
+import co.com.sofka.usecase.handler.GetCountryHandlerUseCase;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import lombok.AllArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
@@ -15,12 +14,12 @@ import reactor.core.publisher.Flux;
 @RestController
 @RequestMapping(value = "/api/ms-challenge-person/api/persons/get-country")
 @Api(tags = "Country API")
-public record GetCountryHandler(GetCountryUseCase getCountryUseCase) {
+public record GetCountryHandler(GetCountryHandlerUseCase getCountryHandlerUseCase) {
 
     @GetMapping(path = "/by-status", params = {"status"}, produces = {MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
     @ApiOperation(value = "get  country")
     public Flux<CountryDTO> getCountryActives(@RequestParam(value = "status", required = true) final String status) {
-        return getCountryUseCase.execute(status)
+        return getCountryHandlerUseCase.execute(status)
                 .map(this::toDTO);
     }
 
