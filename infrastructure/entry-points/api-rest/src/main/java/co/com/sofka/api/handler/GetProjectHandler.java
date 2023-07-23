@@ -16,11 +16,8 @@ import reactor.core.publisher.Flux;
 
 @RestController
 @RequestMapping(value = "/api/ms-challenge-person/api/persons/get-project")
-@AllArgsConstructor
 @Api(tags = "GetProject API")
-public class GetProjectHandler {
-
-    private final GetProjectHandlerUseCase getClientHandlerUseCase;
+public record GetProjectHandler(GetProjectHandlerUseCase getClientHandlerUseCase) {
 
     @GetMapping(
             path = "/by-clientId",
@@ -28,9 +25,9 @@ public class GetProjectHandler {
             consumes = {MediaType.APPLICATION_JSON_VALUE}
     )
     @ApiOperation(value = "get  project")
-    public Flux<ProjectDTO> getclientActive(@RequestParam(value = "status", required = true)  String status,
-                                            @RequestParam(value = "clientId", required = true)  String clientId) {
-        return getClientHandlerUseCase.execute(status,clientId)
+    public Flux<ProjectDTO> getclientActive(@RequestParam(value = "status", required = true) String status,
+                                            @RequestParam(value = "clientId", required = true) String clientId) {
+        return getClientHandlerUseCase.execute(status, clientId)
                 .map(this::toDTO);
     }
 

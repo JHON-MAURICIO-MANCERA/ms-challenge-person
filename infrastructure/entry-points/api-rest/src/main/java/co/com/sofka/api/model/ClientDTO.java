@@ -16,6 +16,7 @@ public class ClientDTO {
     private String nit;
     @NotEmpty(message = "clientName can not is Empty nor Null")
     private String clientName;
+    private String status;
 
 
 }

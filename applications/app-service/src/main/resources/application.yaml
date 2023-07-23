@@ -1,5 +1,5 @@
 server:
-  port: 8083
+  port: 8080
 spring:
  #profiles:
     #name: "ms-challenge-person"
@@ -12,9 +12,9 @@ spring:
       ddl-auto: "validate"
     databasePlatform: "org.hibernate.dialect.H2Dialect"
   datasource:
-    url: "jdbc:postgresql://localhost:5432/person"
+    url: "jdbc:postgresql://persondb.c8yfhn5lx6bh.us-east-1.rds.amazonaws.com:5432/person"
     username: "postgres"
-    password: "person2023"
+    password: "xLxiho5v9Wy6"
     driver-class-name: "org.postgresql.Driver"
 management:
   endpoints:

@@ -64,12 +64,6 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
-    - name: Build JAR with custom name and location
-      run: ./gradlew jar
-
-#    - name: Move JAR to specific location
-#      run: mv build/libs/ms-challenge-person.jar applications/build/libs/
-
     - name: Build, tag, and push image to Amazon ECR
       id: build-image
       env:
