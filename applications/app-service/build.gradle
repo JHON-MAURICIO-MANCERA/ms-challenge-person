@@ -14,16 +14,20 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
 }
+jar {
+    archiveFileName.set('ms-challenge-person.jar')
+    destinationDirectory.set(file("${rootProject.projectDir}/applications/build/libs/"))
+}
 
 tasks.register('explodedJar', Copy) {
     with jar
     into "${buildDir}/exploded"
 }
 
-jar {
-    // To disable the *-plain.jar
-    enabled = false
-}
+//jar {
+//    // To disable the *-plain.jar
+//    enabled = false
+//}
 
 bootJar {
     // Sets output jar name
