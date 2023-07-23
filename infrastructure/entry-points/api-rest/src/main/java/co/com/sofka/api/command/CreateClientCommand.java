@@ -15,16 +15,12 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping(value = "/api/ms-challenge-person/api/persons/create-client")
-@AllArgsConstructor
 @Api(tags = "Client API")
-public class CreateClientCommand {
-
-    private final ClientCommandUseCase clientCommandUseCase;
-
+public record CreateClientCommand(ClientCommandUseCase clientCommandUseCase) {
 
     @PostMapping(path = "/save-client", produces = {MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
     @ApiOperation(value = "Create a new client")
-    public Mono<String> createPerson(@Valid @RequestBody ClientDTO clientDTO) {
+    public Mono<String> createClient(@Valid @RequestBody ClientDTO clientDTO) {
         return clientCommandUseCase.createClient(toDomainObject(clientDTO));
     }
 

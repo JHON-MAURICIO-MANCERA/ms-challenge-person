@@ -6,7 +6,6 @@ import co.com.sofka.model.identificationtype.IdentificationType;
 import co.com.sofka.usecase.handler.GetIdentificationTypeHandlerUseCase;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import lombok.AllArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,11 +15,9 @@ import reactor.core.publisher.Flux;
 
 @RestController
 @RequestMapping(value = "/api/ms-challenge-person/api/persons/get-identification-type")
-@AllArgsConstructor
 @Api(tags = "IdentificationType  API")
-public class GetIdentificationTypeHandler {
-
-    private final GetIdentificationTypeHandlerUseCase getIdentificationTypeHandlerUseCase;
+public record GetIdentificationTypeHandler(
+        GetIdentificationTypeHandlerUseCase getIdentificationTypeHandlerUseCase) {
 
     @GetMapping(path = "/active", params = {"status"}, produces = {MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
     @ApiOperation(value = "get identification type")

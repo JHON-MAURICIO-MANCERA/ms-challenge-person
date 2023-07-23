@@ -16,11 +16,8 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping(value = "/api/ms-challenge-person/api/persons/create-persons")
-@AllArgsConstructor
 @Api(tags = "Person API")
-public class CreatePersonCommand {
-    private final CreatePersonCommandUseCase createPersonCommandUseCase;
-
+public record CreatePersonCommand(CreatePersonCommandUseCase createPersonCommandUseCase) {
     @PostMapping(path = "/save-person", produces = {MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
     @ApiOperation(value = "Create a new person")
     public Mono<SofkianoDTO> createPerson(@Valid @RequestBody SofkianoDTO sofkianoDTO) {
@@ -29,10 +26,10 @@ public class CreatePersonCommand {
     }
 
     private Sofkiano toSofkiano(SofkianoDTO sofkianoDTO) {
-        return ObjectConversionUtils.convertir(sofkianoDTO,Sofkiano.class);
+        return ObjectConversionUtils.convertir(sofkianoDTO, Sofkiano.class);
     }
 
     private SofkianoDTO toSofkianoDTO(Sofkiano sofkiano) {
-        return ObjectConversionUtils.convertir(sofkiano,SofkianoDTO.class);
+        return ObjectConversionUtils.convertir(sofkiano, SofkianoDTO.class);
     }
 }
