@@ -6,12 +6,8 @@ import co.com.sofka.model.project.Project;
 import co.com.sofka.usecase.handler.GetProjectHandlerUseCase;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import lombok.AllArgsConstructor;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 
 @RestController
@@ -19,6 +15,7 @@ import reactor.core.publisher.Flux;
 @Api(tags = "GetProject API")
 public record GetProjectHandler(GetProjectHandlerUseCase getClientHandlerUseCase) {
 
+    @CrossOrigin(origins = "http://localhost:3000/")
     @GetMapping(
             path = "/by-clientId",
             produces = {MediaType.APPLICATION_JSON_VALUE},

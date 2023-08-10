@@ -16,6 +16,7 @@ import reactor.core.publisher.Flux;
 @Api(tags = "Country API")
 public record GetCountryHandler(GetCountryHandlerUseCase getCountryHandlerUseCase) {
 
+    @CrossOrigin(origins = "http://localhost:3000/")
     @GetMapping(path = "/by-status", params = {"status"}, produces = {MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
     @ApiOperation(value = "get  country")
     public Flux<CountryDTO> getCountryActives(@RequestParam(value = "status", required = true) final String status) {

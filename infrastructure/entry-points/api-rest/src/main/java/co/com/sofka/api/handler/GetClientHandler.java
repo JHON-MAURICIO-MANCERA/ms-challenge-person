@@ -14,6 +14,7 @@ import reactor.core.publisher.Flux;
 @Api(tags = "GetClient API")
 public record GetClientHandler(GetClientHandlerUseCase getClientHandlerUseCase) {
 
+    @CrossOrigin(origins = "http://localhost:3000/")
     @GetMapping(
             path = "/by-status", params = {"status"},
             produces = {MediaType.APPLICATION_JSON_VALUE},

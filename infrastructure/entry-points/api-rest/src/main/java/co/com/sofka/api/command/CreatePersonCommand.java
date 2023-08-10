@@ -6,7 +6,6 @@ import co.com.sofka.model.sofkiano.Sofkiano;
 import co.com.sofka.usecase.command.CreatePersonCommandUseCase;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import lombok.AllArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
@@ -18,6 +17,8 @@ import javax.validation.Valid;
 @RequestMapping(value = "/api/ms-challenge-person/api/persons/create-persons")
 @Api(tags = "Person API")
 public record CreatePersonCommand(CreatePersonCommandUseCase createPersonCommandUseCase) {
+
+    @CrossOrigin(origins = "http://localhost:3000/")
     @PostMapping(path = "/save-person", produces = {MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
     @ApiOperation(value = "Create a new person")
     public Mono<SofkianoDTO> createPerson(@Valid @RequestBody SofkianoDTO sofkianoDTO) {

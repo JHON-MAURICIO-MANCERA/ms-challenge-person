@@ -7,10 +7,7 @@ import co.com.sofka.usecase.handler.GetIdentificationTypeHandlerUseCase;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 
 @RestController
@@ -18,7 +15,7 @@ import reactor.core.publisher.Flux;
 @Api(tags = "IdentificationType  API")
 public record GetIdentificationTypeHandler(
         GetIdentificationTypeHandlerUseCase getIdentificationTypeHandlerUseCase) {
-
+    @CrossOrigin(origins = "http://localhost:3000/")
     @GetMapping(path = "/active", params = {"status"}, produces = {MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
     @ApiOperation(value = "get identification type")
     public Flux<IdentificationTypeDTO> getCountryActives(@RequestParam(value = "status", required = true) final String status) {
