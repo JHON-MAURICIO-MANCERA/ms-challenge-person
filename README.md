@@ -1,4 +1,14 @@
 # DATOS TÉCNICOS
+
+## Versiones
+
+ cleanArchitectureVersion = '2.4.5'\
+ springBootVersion = '2.7.3'\
+ sonarVersion = '3.0'\
+ jacocoVersion = '0.8.8'\
+ lombokVersion = '1.18.24'\
+ java: java 17
+ 
 ## Links Swagger 
  Interface Swagger: http://localhost:8080/swagger-ui/index.html \
  Documentación: http://localhost:8080/v3/api-docs \
